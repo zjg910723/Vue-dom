@@ -1,0 +1,22 @@
+{
+  "name": "vue-dom",
+  "version": "1.0.0",
+  "description": "node+vue+vuex",
+  "main": "index.js",
+  "scripts": {
+    "test": "noe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjg910723/Vue-dom.git"
+  },
+  "keywords": [
+    "aaa6843061"
+  ],
+  "author": "zjx0723",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zjg910723/Vue-dom/issues"
+  },
+  "homepage": "https://github.com/zjg910723/Vue-dom#readme"
+}
