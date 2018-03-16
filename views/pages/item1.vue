@@ -19,13 +19,16 @@
         methods: {
             click(){
                 this.$store.commit('increment');
-                console.log(this.$store.state.count);
+                this.$store.getters.doneTodosCount;
             }
         },
         computed: {
             count () {
                 return this.$store.state.count
+            },
+            doneTodosCount () {
+                return this.$store.getters.doneTodosCount
             }
-        }
+        },
     };
 </script>
