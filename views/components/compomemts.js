@@ -6,4 +6,4 @@ const componentTemps = {
 }
 
 
-export default componentTemps
+export default componentTemps;

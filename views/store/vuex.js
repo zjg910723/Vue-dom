@@ -30,6 +30,6 @@ const store = new Vuex.Store({
     }
 
 })
-console.log(store.getters.doneTodos, store.getters.doneTodosCount, store.getters.getTodoById(2));
+console.log(store.getters.doneTodos, store.getters.doneTodosCount, store.getters.getTodoById(1));
 
 export default store;

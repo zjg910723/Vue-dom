@@ -53,3 +53,17 @@ blockquote {
     margin-bottom: 100px;
     line-height: 1.1;
 }
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, 100px);
+    object-fit: cover;
+    div {
+        img {
+            width: 100%;
+        }
+    }
+}

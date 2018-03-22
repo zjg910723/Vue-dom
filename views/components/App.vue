@@ -7,6 +7,7 @@
             <li><router-link :to="{ path: '/user/item1' }">home</router-link></li>
             <li><router-link :to="{ path: '/user/item2' }">foo</router-link></li>
         </ul>
+        <el-button>asdasd</el-button>
         <router-view class="view"></router-view>
     </div>
 </template>

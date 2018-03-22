@@ -1,8 +1,13 @@
 <template>
-    <div class="blend">
-        <blockquote class="red">“Item2”</blockquote>
-        <blockquote class="yellow">“Fashionable figures break away from the populist peloton”</blockquote>
-        <blockquote class="green">“Comprehensive characters for culturally correct creations”</blockquote>
+    <div class="container">
+        <div class="red">
+            <img src="http://unsplash.it/1499/1000" alt="">
+        </div>
+        <div class="green"><img src="http://unsplash.it/1499/1000" alt=""></div>
+        <div class="red"><img src="http://unsplash.it/1499/1000" alt=""></div>
+        <div class="yellow"><img src="http://unsplash.it/1499/1000" alt=""></div>
+        <div class="green"><img src="http://unsplash.it/1499/1000" alt=""></div>
+        <div class="yellow"><img src="http://unsplash.it/1499/1000" alt=""></div>
     </div>
 </template>
 
