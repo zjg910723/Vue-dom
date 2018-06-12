@@ -40,6 +40,7 @@
         "precss": "^3.1.2",
         "style-loader": "^0.20.3",
         "uglifyjs-webpack-plugin": "^1.2.3",
+        "url-loader": "^1.0.1",
         "vue": "^2.5.15",
         "vue-loader": "^14.2.1",
         "vue-router": "^3.0.1",

@@ -32,6 +32,12 @@ module.exports = () => {
                     test: /\.(jsx|js)$/,
                     use: ['babel-loader'],
                     exclude: /node_modules/
+                },
+                {
+                    test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
+                    use: [
+                        `url-loader`
+                    ]
                 }
 
             ]
