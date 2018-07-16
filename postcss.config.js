@@ -10,5 +10,6 @@ module.exports = {
             }
         }),
         // require('autoprefixer')(),
+        // require("cssnano")()
     ]
 }
