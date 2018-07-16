@@ -18,7 +18,7 @@ const router = new VueRouter({
 new Vue({
     el: '#app',
     data: {
-        templateValue: 'App'
+        view: 'App'
     },
     store,
     components: ComponentTemps,

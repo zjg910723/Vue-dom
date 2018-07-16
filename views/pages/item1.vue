@@ -26,6 +26,18 @@
             count () {
                 return this.$store.state.count
             }
+        },
+        beforeCreate: function() {
+            console.log('调用了beforeCreate')
+        },  
+        created: function() {
+            console.log('调用了created')
+        },
+        beforeMount: function() {
+            console.log('调用了beforeMount')
+        },
+        mounted: function() {
+            console.log('调用了mounted')
         }
     };
 </script>

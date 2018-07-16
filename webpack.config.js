@@ -36,7 +36,7 @@ module.exports = () => {
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
                     use: [
-                        `url-loader`
+                        `file-loader`
                     ]
                 }
 
