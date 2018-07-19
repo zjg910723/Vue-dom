@@ -1,12 +1,15 @@
-import './styles/index.scss'
+import './styles/index.scss';
 import Vue from 'vue';
-import VueRouter from "vue-router"
+import VueRouter from "vue-router";
 import routes from "./router/router.js";
 
-import ComponentTemps from './components/compomemts.js'
+import ComponentTemps from './components/compomemts.js';
 
 import store from "./store/vuex";
 
+import Until from "./until/until";
+
+Until.frontInit(3.75);
 
 Vue.use(VueRouter);
 

@@ -28,7 +28,8 @@
             }
         },
         beforeCreate: function() {
-            console.log('调用了beforeCreate')
+
+            console.log('调用了beforeCreate',this.$route)
         },  
         created: function() {
             console.log('调用了created')
