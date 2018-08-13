@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -10,9 +11,10 @@ module.exports = () => {
         entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets/scripts"),
-            filename: 'main.js',
-            publicPath: '/'
+            path: path.resolve(__dirname, "assets"),
+            filename: 'scripts/[name].js',
+            chunkFilename: 'scripts/[name].[chunkhash].js',
+            publicPath: 'assets/',
         },
         module: {
             rules: [{
@@ -43,8 +45,13 @@ module.exports = () => {
             ]
         },
         plugins: [
-            new ExtractTextPlugin("../stylesheets/style.css"),
+            new ExtractTextPlugin("stylesheets/style.css"),
             // new UglifyJSPlugin()
+            new HtmlWebpackPlugin({
+                inject: true,
+                filename: 'index.html',
+                template: path.resolve(__dirname, "index.html")
+            }),
 
         ],
         resolve: {

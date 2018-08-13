@@ -17,20 +17,20 @@
             }
         },
         created() {
-            this.getDeviceConf();
+            // this.getDeviceConf();
         },
         methods: {
-            async getDeviceConf() {
-                var data = await axios.get(`/deviceConfig/getDeviceConfig.do`,{ params: {
-                    token: "e4ea7af6df9a4d4cae243826d556c402",
-                    deviceId: 190015129
-                }});
-                data = data.data;
-                   debugger;
+            // async getDeviceConf() {
+            //     var data = await axios.get(`/deviceConfig/getDeviceConfig.do`,{ params: {
+            //         token: "e4ea7af6df9a4d4cae243826d556c402",
+            //         deviceId: 190015129
+            //     }});
+            //     data = data.data;
+            //        debugger;
 
-                if(data.code === 10000000){
-                }
-            }
+            //     if(data.code === 10000000){
+            //     }
+            // }
         }
     };
 </script>

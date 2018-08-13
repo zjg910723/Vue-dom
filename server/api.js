@@ -16,13 +16,13 @@ app.use(ctx => {
     // ctx.body = "Hello Koa";
     // console.log(ctx)
     if (/\//.test(ctx.url)) {
-        ctx.body = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8")
+        ctx.body = fs.readFileSync(path.join(__dirname, "../assets/index.html"), "utf8")
     }
 })
 
 //跨域部分配置
 app.use(cors({
-    origin: "http://localhost:3298",
+    origin: "http://localhost:3699",
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
     maxAge: 5,
     credentials: true,
@@ -87,6 +87,6 @@ app.use(cors({
 //     next();
 // });
 
-app.listen(3289, (data) => {
-    console.log("Page is run http://localhost:3289")
+app.listen(3699, (data) => {
+    console.log("Page is run http://localhost:3699")
 });
