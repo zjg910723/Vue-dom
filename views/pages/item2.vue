@@ -1,8 +1,6 @@
 <template>
     <div class="blend">
-        <blockquote class="red">“Item2aaa”</blockquote>
-        <blockquote class="yellow">“Fashionable figures break away from the populist peloton”</blockquote>
-        <blockquote class="green">“Compreaaahensive characters for culturally correct creations”</blockquote>
+        <blockquote class="red">“Item2”</blockquote>
     </div>
 </template>
 

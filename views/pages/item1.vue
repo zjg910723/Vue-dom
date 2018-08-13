@@ -1,9 +1,7 @@
 <template>
     <div class="blend">
         <blockquote class="red">{{count}}</blockquote>
-        <blockquote class="yellow" @click="click()">“Fashionable figures break away from the populist peloton”</blockquote>
-        <blockquote class="green">“Comprehensive characters for culturally correct creations”</blockquote>
-        
+        <button @click="click">我是item1</button>
     </div>
 </template>
 

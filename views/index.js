@@ -8,10 +8,14 @@ import ComponentTemps from './components/compomemts.js';
 import store from "./store/vuex";
 
 import Until from "./until/until";
+import axios from "axios";
 
 Until.frontInit(3.75);
 
 Vue.use(VueRouter);
+
+axios.defaults.baseURL = 'http://192.168.1.215:6200/by-app-web';
+
 
 
 const router = new VueRouter({
