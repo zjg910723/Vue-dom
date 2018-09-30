@@ -4,10 +4,9 @@
     "description": "node+vue+vuex",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack-dev-server --watch",
+        "start": "webpack-dev-server --watch",
         "watch": "webpack --watch",
-        "build": "webpack --config webpack.prod.js",
-        "start": "node app.js"
+        "build": "webpack --config webpack.prod.js"
     },
     "repository": {
         "type": "git",

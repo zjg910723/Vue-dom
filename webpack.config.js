@@ -13,7 +13,7 @@ module.exports = () => {
             path: path.resolve(__dirname, "assets"),
             filename: 'scripts/[name].js',
             chunkFilename: 'scripts/[name].[chunkhash].js',
-            publicPath: 'assets/',
+            publicPath: '/',
         },
         module: {
             rules: [{

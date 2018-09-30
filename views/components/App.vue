@@ -1,6 +1,6 @@
 <template>
-    <div>
-         <router-view class="view"></router-view>
+    <div class="container">
+        <router-view class="view"></router-view>
         <ElementTable :tableData="tableData" :propsArr="propsArr" />
     </div>
 </template>
@@ -44,7 +44,6 @@
         methods: {
             async getList() {
                 var data = await axios.get("/api/by-app-web/user/login.do?loginName=wangb&password=123456&sourceFlag=1&loginPackage=web&flag=3");
-                debugger;
             }
         },
         created() {
