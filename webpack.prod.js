@@ -13,7 +13,7 @@ module.exports = () => {
             path: path.resolve(__dirname, "assets"),
             filename: 'scripts/[name].js',
             chunkFilename: 'scripts/[name].[chunkhash].js',
-            publicPath: 'assets/',
+            publicPath: '',
         },
         module: {
             rules: [{
@@ -36,9 +36,12 @@ module.exports = () => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    use: [
-                        `url-loader`
-                    ]
+                    use: [{
+                        loader: "url-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
 
             ]
@@ -48,11 +51,21 @@ module.exports = () => {
             new HtmlWebpackPlugin({
                 inject: true,
                 filename: 'index.html',
-                template: path.resolve(__dirname, "index.html")
+                template: path.resolve(__dirname, "index.html"),
+                minify: { //压缩HTML文件
+                    removeComments: true, //移除HTML中的注释
+                    collapseWhitespace: true //删除空白符与换行符
+                }
             }),
-            new UglifyJSPlugin(),
-
-
+            new UglifyJSPlugin({
+                uglifyOptions: {
+                    compress: {
+                        warnings: false,
+                        drop_debugger: true,
+                        drop_console: true
+                    }
+                },
+            }),
         ],
         resolve: {
             extensions: [".js", ".vue"],
@@ -62,7 +75,8 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
-        mode: "production"
+        mode: "production",
+        performance: { hints: false }
     }
 
 }

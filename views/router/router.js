@@ -5,6 +5,7 @@ const Item1 = () =>
 const Item2 = () =>
     import ( /* webpackChunkName: "item2" */ '../pages/item2');
 
+
 const routes = [{
     path: '/user/item1',
     component: Item1

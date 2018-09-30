@@ -1,6 +1,5 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
@@ -37,9 +36,12 @@ module.exports = () => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    use: [
-                        `file-loader`
-                    ]
+                    use: [{
+                        loader: "url-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
 
             ]
@@ -62,7 +64,21 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
-        mode: "development"
+        devServer: {
+            host: 'localhost',
+            port: 3298,
+            historyApiFallback: true,
+            // hot: false,
+            // inline: false,
+            proxy: {
+                '/api': {
+                    target: 'http://192.168.1.215:6200/', //需要跨域的域名
+                    pathRewrite: { '^/api': '' }
+                }
+            }
+        },
+        mode: "development",
+        performance: { hints: false }
     }
 
 }

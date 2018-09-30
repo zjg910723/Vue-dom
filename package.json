@@ -4,7 +4,7 @@
     "description": "node+vue+vuex",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack-dev-server",
+        "dev": "webpack-dev-server --watch",
         "watch": "webpack --watch",
         "build": "webpack --config webpack.prod.js",
         "start": "node app.js"
@@ -41,6 +41,7 @@
         "babel-preset-vue": "^2.0.1",
         "css-loader": "^0.28.10",
         "cssnano": "^3.10.0",
+        "element-ui": "^2.4.6",
         "express": "^4.16.3",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
         "file-loader": "^1.1.11",
