@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <router-link to="/item1">item1</router-link>
+        <router-link to="/item2">item2</router-link>
         <router-view class="view"></router-view>
         <ElementTable :tableData="tableData" :propsArr="propsArr" />
     </div>
@@ -7,7 +9,7 @@
 
 <script>
     import axios from "axios";
-    import ElementTable from "../pages/elementTable";
+    import ElementTable from "./components/elementTable";
     export default {
         data () {
             return {

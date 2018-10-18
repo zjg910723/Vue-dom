@@ -4,15 +4,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
+
+//获取项目名称,动态开发项目
+var config_argv = process.env.npm_config_argv;
+var fileName = JSON.parse(config_argv).original[1].split("--")[1];
+
+
+
 module.exports = () => {
     return {
         //入口文件配置
-        entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
+        entry: ["babel-polyfill", path.join(__dirname, `src/views/${fileName}`, "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets"),
-            filename: 'scripts/[name].js',
-            chunkFilename: 'scripts/[name].[chunkhash].js',
+            path: path.resolve(__dirname, `assets/${fileName}`),
+            filename: `scripts/[name].js`,
+            chunkFilename: `scripts/[name].[chunkhash].js`,
             publicPath: '/',
         },
         module: {
@@ -39,7 +46,7 @@ module.exports = () => {
                     use: [{
                         loader: "url-loader",
                         options: {
-                            name: "images/[name].[ext]",
+                            name: `images/[name].[ext]`,
                         }
                     }]
                 }
@@ -47,12 +54,12 @@ module.exports = () => {
             ]
         },
         plugins: [
-            new ExtractTextPlugin("stylesheets/style.css"),
+            new ExtractTextPlugin(`${fileName}/stylesheets/style.css`),
             // new UglifyJSPlugin()
             new HtmlWebpackPlugin({
                 inject: true,
                 filename: 'index.html',
-                template: path.resolve(__dirname, "index.html")
+                template: path.resolve(__dirname, `src/views/${fileName}/index.html`)
             }),
 
         ],

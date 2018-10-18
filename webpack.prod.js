@@ -3,16 +3,18 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var config_argv = process.env.npm_config_argv;
+var fileName = JSON.parse(config_argv).original[0].split(":")[1];
 
 module.exports = () => {
     return {
         //入口文件配置
-        entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
+        entry: ["babel-polyfill", path.join(__dirname, `src/views/${fileName}`, "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets"),
-            filename: 'scripts/[name].js',
-            chunkFilename: 'scripts/[name].[chunkhash].js',
+            path: path.resolve(__dirname, `assets/${fileName}`),
+            filename: `scripts/[name].js`,
+            chunkFilename: `scripts/[name].js`,
             publicPath: '',
         },
         module: {
@@ -39,7 +41,7 @@ module.exports = () => {
                     use: [{
                         loader: "url-loader",
                         options: {
-                            name: "images/[name].[ext]",
+                            name: `images/[name].[ext]`,
                         }
                     }]
                 }
@@ -47,11 +49,11 @@ module.exports = () => {
             ]
         },
         plugins: [
-            new ExtractTextPlugin("stylesheets/style.css"),
+            new ExtractTextPlugin(`stylesheets/style.css`),
             new HtmlWebpackPlugin({
                 inject: true,
                 filename: 'index.html',
-                template: path.resolve(__dirname, "index.html"),
+                template: path.resolve(__dirname, `src/views/${fileName}/index.html`),
                 minify: { //压缩HTML文件
                     removeComments: true, //移除HTML中的注释
                     collapseWhitespace: true //删除空白符与换行符

@@ -7,10 +7,10 @@ const Item2 = () =>
 
 
 const routes = [{
-    path: '/user/item1',
+    path: '/item1',
     component: Item1
 }, {
-    path: '/user/item2',
+    path: '/item2',
     component: Item2
 }]
 

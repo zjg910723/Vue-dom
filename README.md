@@ -10,3 +10,10 @@ node + vue + webpack + vue-router + vuex
         uglifyjs-webpack-plugin (js压缩插件)
         cssnano (css压缩插件)
         postcss (scss预处理编译工具)
+
+# 版本试用
+        此版本的框架适合与------多个项目同时开发，并且依赖于同一套框架.
+
+#项目启动
+        npm run start --[这里是你的项目名称]
+        yarn run start --[这里是你的项目名称]

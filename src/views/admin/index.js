@@ -3,8 +3,7 @@ import Vue from 'vue';
 import VueRouter from "vue-router";
 import routes from "./router/router.js";
 
-import ComponentTemps from './components/compomemts.js';
-// import 'element-ui/lib/theme-chalk/index.css';
+import ComponentTemps from './compomemts.js';
 
 import store from "./store/vuex";
 
@@ -14,8 +13,6 @@ import store from "./store/vuex";
 // Until.frontInit(3.75);
 
 Vue.use(VueRouter);
-
-// axios.defaults.baseURL = 'http://192.168.1.215:6200/by-app-web';
 
 
 
