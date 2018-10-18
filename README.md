@@ -14,6 +14,6 @@ node + vue + webpack + vue-router + vuex
 # 版本试用
         此版本的框架适合与------多个项目同时开发，并且依赖于同一套框架.
 
-#项目启动
+# 项目启动
         npm run start --[这里是你的项目名称]
         yarn run start --[这里是你的项目名称]
