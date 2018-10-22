@@ -16,3 +16,7 @@
 ## 项目启动
         npm run start --[这里是你的项目名称]
         yarn run start --[这里是你的项目名称]
+
+
+## 打包命令行
+        yarn build:[项目名称]  需要自己去package.js配置

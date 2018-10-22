@@ -77,6 +77,11 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
+        optimization: {
+            splitChunks: {
+                chunks: 'all'
+            }
+        },
         mode: "production",
         performance: { hints: false }
     }
