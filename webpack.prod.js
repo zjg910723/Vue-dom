@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -48,6 +49,28 @@ module.exports = () => {
 
             ]
         },
+        optimization: {
+            splitChunks: {
+                chunks: 'async',
+                minSize: 30000,
+                minChunks: 1,
+                maxAsyncRequests: 5,
+                maxInitialRequests: 3,
+                automaticNameDelimiter: '~',
+                name: true,
+                cacheGroups: {
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10
+                    },
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true
+                    }
+                }
+            }
+        },
         plugins: [
             new ExtractTextPlugin(`stylesheets/style.css`),
             new HtmlWebpackPlugin({
@@ -67,7 +90,7 @@ module.exports = () => {
                         drop_console: true
                     }
                 },
-            }),
+            })
         ],
         resolve: {
             extensions: [".js", ".vue"],
@@ -75,11 +98,6 @@ module.exports = () => {
                 'vue$': 'vue/dist/vue.esm.js',
                 entry_dir: path.resolve(__dirname),
                 modules: path.resolve(__dirname, 'node_modules'),
-            }
-        },
-        optimization: {
-            splitChunks: {
-                chunks: 'all'
             }
         },
         mode: "production",

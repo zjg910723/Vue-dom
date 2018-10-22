@@ -9,8 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var config_argv = process.env.npm_config_argv;
 var fileName = JSON.parse(config_argv).original[1].split("--")[1];
 
-
-
 module.exports = () => {
     return {
         //入口文件配置
@@ -53,8 +51,30 @@ module.exports = () => {
 
             ]
         },
+        optimization: {
+            splitChunks: {
+                chunks: 'async',
+                minSize: 30000,
+                minChunks: 1,
+                maxAsyncRequests: 5,
+                maxInitialRequests: 3,
+                automaticNameDelimiter: '~',
+                name: true,
+                cacheGroups: {
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10
+                    },
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true
+                    }
+                }
+            }
+        },
         plugins: [
-            new ExtractTextPlugin(`${fileName}/stylesheets/style.css`),
+            new ExtractTextPlugin(`stylesheets/style.css`),
             // new UglifyJSPlugin()
             new HtmlWebpackPlugin({
                 inject: true,
