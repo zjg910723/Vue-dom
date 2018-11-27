@@ -2,16 +2,20 @@ import './styles/index.scss'
 import Vue from 'vue';
 import VueRouter from "vue-router"
 import routes from "./router/router.js";
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
 
-import ComponentTemps from './components/compomemts.js'
-
-import store from "./store/vuex";
+import ComponentTemps from './components/compomemts.js';
+import Util from "./util/util";
 
 
+Util.frontInit(37.5);
 Vue.use(VueRouter);
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
+
+//全局捕获错误
+window.addEventListener('error', (data) => {
+    console.log(data.message);
+    console.log(`错误位于： ${data.lineno}行`);
+}, false);
 
 
 const router = new VueRouter({
@@ -23,7 +27,6 @@ new Vue({
     data: {
         templateValue: 'App'
     },
-    store,
     components: ComponentTemps,
     router
 })

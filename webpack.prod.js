@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -10,9 +11,10 @@ module.exports = () => {
         entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets/scripts"),
-            filename: 'main.js',
-            publicPath: '/'
+            path: path.resolve(__dirname, "assets"),
+            filename: 'scripts/[name].js',
+            chunkFilename: 'scripts/[name].[chunkhash].js',
+            publicPath: '',
         },
         module: {
             rules: [{
@@ -35,19 +37,36 @@ module.exports = () => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    // use: [
-                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
-                    // ],
-                    use: [
-                        `file-loader`
-                    ]
+                    use: [{
+                        loader: "url-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
 
             ]
         },
         plugins: [
-            new ExtractTextPlugin("../stylesheets/style.css"),
-            new UglifyJSPlugin()
+            new ExtractTextPlugin("stylesheets/style.css"),
+            new HtmlWebpackPlugin({
+                inject: true,
+                filename: 'index.html',
+                template: path.resolve(__dirname, "index.html"),
+                minify: { //压缩HTML文件
+                    removeComments: true, //移除HTML中的注释
+                    collapseWhitespace: true //删除空白符与换行符
+                }
+            }),
+            new UglifyJSPlugin({
+                uglifyOptions: {
+                    compress: {
+                        warnings: false,
+                        drop_debugger: true,
+                        drop_console: true
+                    }
+                },
+            }),
 
         ],
         resolve: {
@@ -58,6 +77,8 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
+        mode: "production",
+        performance: { hints: false }
     }
 
 }

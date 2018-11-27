@@ -1,5 +1,8 @@
-import Item1 from "../pages/item1"
-import Item2 from "../pages/item2"
+const Item1 = () =>
+    import ( /* webpackChunkName: "item1" */ '../pages/item1');
+const Item2 = () =>
+    import ( /* webpackChunkName: "item2" */ '../pages/item2');
+
 
 const routes = [{
     path: '/user/item1',

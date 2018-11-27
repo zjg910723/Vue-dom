@@ -1,6 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 
@@ -10,8 +10,8 @@ module.exports = () => {
         entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets/scripts"),
-            filename: 'main.js',
+            path: path.resolve(__dirname, "assets"),
+            filename: 'scripts/[name].js',
             publicPath: '/'
         },
         module: {
@@ -35,19 +35,24 @@ module.exports = () => {
                 },
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
-                    // use: [
-                    //     `file-loader?name=[name].[ext]&publicPath=../../assets/wow_event/${envFile}/images/&outputPath=./../images/`
-                    // ],
-                    use: [
-                        `file-loader`
-                    ]
+                    use: [{
+                        loader: "url-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }]
                 }
 
             ]
         },
         plugins: [
-            new ExtractTextPlugin("../stylesheets/style.css"),
+            new ExtractTextPlugin("stylesheets/style.css"),
             // new UglifyJSPlugin()
+            new HtmlWebpackPlugin({
+                inject: true,
+                filename: 'index.html',
+                template: path.resolve(__dirname, "index.html")
+            }),
 
         ],
         resolve: {
@@ -58,6 +63,21 @@ module.exports = () => {
                 modules: path.resolve(__dirname, 'node_modules'),
             }
         },
+        devServer: {
+            host: 'localhost',
+            port: 3298,
+            historyApiFallback: true,
+            // hot: false,
+            // inline: false,
+            proxy: {
+                '/api': {
+                    target: 'http://192.168.1.215:6200/', //需要跨域的域名
+                    pathRewrite: { '^/api': '' }
+                }
+            }
+        },
+        mode: "development",
+        performance: { hints: false }
     }
 
 }

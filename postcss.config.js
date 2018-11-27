@@ -9,6 +9,10 @@ module.exports = {
                     // }
             }
         }),
-        // require('autoprefixer')(),
+        require('postcss-pxtorem')({
+            rootValue: 37.5,
+            propList: ['*']
+        })
+
     ]
 }
