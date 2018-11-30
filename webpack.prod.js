@@ -82,6 +82,10 @@ module.exports = () => {
                     collapseWhitespace: true //删除空白符与换行符
                 }
             }),
+            // keep module.id stable when vendor modules does not change
+            new webpack.HashedModuleIdsPlugin(),
+                // enable scope hoisting
+            new webpack.optimize.ModuleConcatenationPlugin(),
             new UglifyJSPlugin({
                 uglifyOptions: {
                     compress: {
