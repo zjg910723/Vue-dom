@@ -1,53 +1,127 @@
 <template>
-    <div class="container">
-        <router-view class="view"></router-view>
-        <ElementTable :tableData="tableData" :propsArr="propsArr" />
-    </div>
+        <div class="wrapper" ref="wrapper">
+            <div class="bscroll-container">
+                <!-- 刷新提示信息 -->
+                <div class="top-tip">
+                    <span class="refresh-hook">{{pulldownMsg}}</span>
+                </div>
+                <!-- 内容列表 -->
+                <ul class="content">
+                    <li v-for="item in data">{{item}}</li>
+                </ul>
+                <!-- 底部提示信息 -->
+                <div class="bottom-tip">
+                    <span class="loading-hook">{{pullupMsg}}</span>
+                </div>
+            </div>
+        </div>
 </template>
 
 <script>
     import axios from "axios";
-    import ElementTable from "../pages/elementTable";
+    import BScroll from 'better-scroll';
     export default {
         data () {
             return {
-                tableData: [{//表格显示的数据
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }],
-                propsArr: [//表格要显示的列
-                    {name: "date", label:"日期"}, 
-                    {name: "name", label:"名字"},
-                    {name: "address", label:"地址"},
-                    {name: "", label:"操作",operlist:[//有多少种操作
-                        {name:"删除"},{name: "编辑"}
-                    ]}
-                ]
+                data: [0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5,6,0,1,2,3,4,5,6],
+                pulldownMsg: '下拉刷新',
+                pullupMsg: '加载更多',
+                alertHook: 'none'
             }
         },
-        components: {
-            ElementTable
-        },
+       
         methods: {
-            async getList() {
-                var data = await axios.get("/api/by-app-web/user/login.do?loginName=wangb&password=123456&sourceFlag=1&loginPackage=web&flag=3");
+            getData() {
+                return new Promise(resolve => {  //模拟数据请求
+                    setTimeout(() => {
+                        const arr = [];
+                        let count = 0;
+                        for (let i = 0; i < 20; i++) {
+                            arr.push(count++)
+                        }
+                        resolve(arr)
+                    }, 1000)
+                })
             }
         },
-        created() {
-            this.getList();
+        created() {//初始化请求的数据第一次进页面
+            const that = this;
+            this.$nextTick(() => {
+                    this.scroll = new BScroll(this.$refs.wrapper,{       //初始化better-scroll
+                        probeType:1,   //1 滚动的时候会派发scroll事件，会截流。2滚动的时候实时派发scroll事件，不会截流。 3除了实时派发scroll事件，在swipe的情况下仍然能实时派发scroll事件
+                        click: false   //是否派发click事件
+                    })
+                    
+                    //滑动结束松开事件
+                    this.scroll.on('touchEnd',(pos) =>{  //上拉刷新
+                        if(pos.y<(this.scroll.maxScrollY - 10)){   //下拉加载
+                            setTimeout(()=>{
+                                that.getData().then((res)=>{
+                                    //恢复文本值
+                                    that.data = that.data.concat(res);
+                                })
+                            },2000)
+                            
+                        }
+                    })      
+            })
         },
     };
 </script>
+<style lang="">
+    .wrapper{
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        overflow: hidden;
+        position: relative;
+    }
+
+    li{
+        line-height: 50px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+    }
+
+    /* 下拉、上拉提示信息 */
+    .top-tip{
+        position: absolute;  
+        top: -40px;  
+        left: 0;
+        z-index: 1;  
+        width: 100%;  
+        height:40px;  
+        line-height:40px;  
+        text-align:center;
+        color: #555;
+    } 
+      
+    .bottom-tip{
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        color: #777;
+        background: #f2f2f2;
+        position: absolute;
+        bottom: -35px;
+        left: 0;
+    }
+
+
+    /* 全局提示信息 */
+    .alert-hook{
+        display: none;
+        position: fixed;
+        top: 62px;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        color: #fff;
+        font-size: 12px;
+        background: rgba(7, 17, 27, 0.5);
+    }
+</style>

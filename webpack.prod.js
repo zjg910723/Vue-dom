@@ -1,7 +1,9 @@
 const path = require('path');
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 
 module.exports = () => {
@@ -10,7 +12,7 @@ module.exports = () => {
         entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "assets"),
+            path: path.resolve(__dirname, "h5Web"),
             filename: 'scripts/[name].js',
             chunkFilename: 'scripts/[name].[chunkhash].js',
             publicPath: '',
@@ -37,7 +39,7 @@ module.exports = () => {
                 {
                     test: /\.(png|eot|woff2|woff|ttf|svg|jpg|gif|mp3)$/,
                     use: [{
-                        loader: "url-loader",
+                        loader: "file-loader",
                         options: {
                             name: "images/[name].[ext]",
                         }
@@ -57,6 +59,10 @@ module.exports = () => {
                     collapseWhitespace: true //删除空白符与换行符
                 }
             }),
+            // keep module.id stable when vendor modules does not change
+            new webpack.HashedModuleIdsPlugin(),
+            // enable scope hoisting
+            new webpack.optimize.ModuleConcatenationPlugin(),
             new UglifyJSPlugin({
                 uglifyOptions: {
                     compress: {
@@ -66,6 +72,7 @@ module.exports = () => {
                     }
                 },
             }),
+
         ],
         resolve: {
             extensions: [".js", ".vue"],
@@ -76,7 +83,9 @@ module.exports = () => {
             }
         },
         mode: "production",
-        performance: { hints: false }
+        performance: {
+            hints: false
+        }
     }
 
 }
