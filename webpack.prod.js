@@ -12,7 +12,7 @@ module.exports = () => {
         entry: ["babel-polyfill", path.join(__dirname, "views", "index.js")],
         //出口文件配置
         output: {
-            path: path.resolve(__dirname, "h5Web"),
+            path: path.resolve(__dirname, "assets"),
             filename: 'scripts/[name].js',
             chunkFilename: 'scripts/[name].[chunkhash].js',
             publicPath: '',
