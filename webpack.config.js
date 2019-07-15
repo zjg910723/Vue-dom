@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var WebpackDevServer = require("webpack-dev-server");
 
 
 
@@ -66,13 +68,18 @@ module.exports = () => {
         devServer: {
             host: 'localhost',
             port: 3298,
-            historyApiFallback: true,
+            historyApiFallback: false,
             // hot: false,
             // inline: false,
             proxy: {
-                '/api': {
-                    target: 'http://192.168.1.215:6200/', //需要跨域的域名
-                    pathRewrite: { '^/api': '' }
+                '/VendingSystem': {
+                    target: 'https://test.nofetel.com/', //需要跨域的域名
+                    changeOrigin: true,
+
+                    secure: false,
+                    // pathRewrite: {
+                    //     '^/VendingSystem': ''
+                    // },
                 }
             }
         },

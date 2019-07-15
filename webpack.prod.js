@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -58,6 +59,10 @@ module.exports = () => {
                     collapseWhitespace: true //删除空白符与换行符
                 }
             }),
+            // keep module.id stable when vendor modules does not change
+            new webpack.HashedModuleIdsPlugin(),
+            // enable scope hoisting
+            new webpack.optimize.ModuleConcatenationPlugin(),
             new UglifyJSPlugin({
                 uglifyOptions: {
                     compress: {

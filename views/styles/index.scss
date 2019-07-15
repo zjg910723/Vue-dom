@@ -2,8 +2,109 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Nocturno Display Medium 4", Georgia;
     font-style: normal;
     font-weight: normal;
     font-stretch: normal;
+    height: 100%;
+}
+#app,
+.van-pull-refresh,
+.van-pull-refresh__track {
+    height: 100%;
+}
+.van-pull-refresh {
+    overflow: auto;
+    overflow-y: scroll!important;
+}
+.container {
+    font-size: 14px;
+}
+.container {
+    h3 {
+        font-weight: 400;
+        text-align: center;
+        margin: 0;
+        padding: .8rem 0;
+    }
+    .van-cell__left-icon {
+        color: #1989fa;
+        font-size: 18px;
+    }
+    .van-cell__value span {
+        color: #fff;
+        background-color: orangered;
+        font-size: 12px;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+    .van-cell, .van-collapse-item__content {
+        padding: 7.5px 15px;
+    }
+    ul li {
+        display: flex;
+        padding: 3px 0;
+        align-items: center;
+    }
+    ul .table-title {
+        padding-bottom: 5px
+    }
+    ul li .house {
+        width: 50px;
+    }
+    ul .table-title span {
+        color: #000;
+    }
+    ul li .device_id {
+        width: 100px;
+    }
+    ul li:not(.table-title) .out-stock {
+        flex: 1;
+        display: flex;
+    }
+    ul li:not(.table-title) .out-stock em {
+        color: #FFFFFF;
+        background: #1989fa;
+        width: 13px;
+        height: 13px;
+        line-height: 13px;
+        border-radius: 50%;
+        margin-right: 2px;
+        font-style: normal;
+        display: block;
+        text-align: center;
+    }
+    ul {
+        .item_pic {
+            width: 70px;
+            img {
+                width: 25px;
+                height: 25px;
+                display: block;
+                border-radius: 50%;
+            }
+        }
+        .item_name {
+            flex: 1;
+        }
+        .item_num {
+            width: 60px;
+            color: orangered;
+        }
+    }
+    
+}
+
+.word_rap {
+    display: flex;
+}
+.word_rap span {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+
+}
+.word_rap img {
+    width: 100px;
+    height: 100%;
 }

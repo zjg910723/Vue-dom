@@ -1,3 +1,10 @@
 {
-    "presets": ["env", "vue", "es2015", "stage-0"]
+    "presets": ["env", "vue", "es2015", "stage-0"],
+    "plugins": [
+        ["import", {
+            "libraryName": "vant",
+            "libraryDirectory": "lib",
+            "style": true
+        }]
+    ]
 }
