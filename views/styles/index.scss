@@ -7,104 +7,78 @@ body {
     font-stretch: normal;
     height: 100%;
 }
-#app,
-.van-pull-refresh,
-.van-pull-refresh__track {
+#allmap, #app {
+    width: 100%;
     height: 100%;
 }
-.van-pull-refresh {
-    overflow: auto;
-    overflow-y: scroll!important;
-}
-.container {
-    font-size: 14px;
-}
-.container {
-    h3 {
-        font-weight: 400;
-        text-align: center;
-        margin: 0;
-        padding: .8rem 0;
-    }
-    .van-cell__left-icon {
-        color: #1989fa;
-        font-size: 18px;
-    }
-    .van-cell__value span {
-        color: #fff;
-        background-color: orangered;
-        font-size: 12px;
-        padding: 2px 4px;
-        border-radius: 3px;
-    }
-    .van-cell, .van-collapse-item__content {
-        padding: 7.5px 15px;
-    }
-    ul li {
-        display: flex;
-        padding: 3px 0;
-        align-items: center;
-    }
-    ul .table-title {
-        padding-bottom: 5px
-    }
-    ul li .house {
-        width: 50px;
-    }
-    ul .table-title span {
-        color: #000;
-    }
-    ul li .device_id {
-        width: 100px;
-    }
-    ul li:not(.table-title) .out-stock {
-        flex: 1;
-        display: flex;
-    }
-    ul li:not(.table-title) .out-stock em {
-        color: #FFFFFF;
-        background: #1989fa;
-        width: 13px;
-        height: 13px;
-        line-height: 13px;
-        border-radius: 50%;
-        margin-right: 2px;
-        font-style: normal;
-        display: block;
-        text-align: center;
-    }
-    ul {
-        .item_pic {
-            width: 70px;
-            img {
-                width: 25px;
-                height: 25px;
-                display: block;
-                border-radius: 50%;
-            }
-        }
-        .item_name {
-            flex: 1;
-        }
-        .item_num {
-            width: 60px;
-            color: orangered;
-        }
-    }
-    
+
+
+/*地图标题*/
+.BMap_bubble_title {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 5px;
+    border: 0;
+    background-color: rgba(0,0,0,.6);
 }
 
-.word_rap {
-    display: flex;
+/* 消息内容 */
+.BMap_bubble_content {
+    background-color: rgba(0, 0, 0, .6);
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
 }
-.word_rap span {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
+.BMap_center + div {
+    display: none!important;
+}
 
+/* 内容 */
+.BMap_pop div:nth-child(9) {
+    top: 35px !important;
+    border-radius: 7px;
 }
-.word_rap img {
-    width: 100px;
-    height: 100%;
+
+/* 左上角删除按键 */
+.BMap_pop img {
+    top: 40px !important;
+    left: 175px !important;
+}
+
+.BMap_top {
+    display: none;
+}
+
+.BMap_bottom {
+    display: none;
+}
+
+.BMap_center {
+    display: none;
+}
+
+/* 隐藏边角 */
+.BMap_pop div:nth-child(1) div {
+    display: none;
+}
+
+.BMap_pop div:nth-child(3) {
+    display: none;
+}
+
+.BMap_pop div:nth-child(7) {
+    display: none;
+}
+
+.BMap_pop div:nth-child(8) {
+    display: none;
+}
+
+p {
+    padding: 0;
+    margin: 0;
 }

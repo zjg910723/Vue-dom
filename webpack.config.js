@@ -1,8 +1,6 @@
 const path = require('path');
-const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackDevServer = require("webpack-dev-server");
 
 
 
@@ -66,24 +64,22 @@ module.exports = () => {
             }
         },
         devServer: {
-            host: 'localhost',
+            host: '192.168.3.50',
             port: 3298,
-            historyApiFallback: false,
+            historyApiFallback: true,
             // hot: false,
             // inline: false,
             proxy: {
-                '/VendingSystem': {
-                    target: 'https://test.nofetel.com/', //需要跨域的域名
-                    changeOrigin: true,
-
-                    secure: false,
-                    // pathRewrite: {
-                    //     '^/VendingSystem': ''
-                    // },
+                '/api': {
+                    target: 'https://test.msn.nofetel.com/', //需要跨域的域名
+                    pathRewrite: { '^/api': '' }
                 }
             }
         },
         mode: "development",
+        externals: {
+            'BaiduMap': 'BMap'
+        },
         performance: { hints: false }
     }
 
