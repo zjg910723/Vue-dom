@@ -2,7 +2,8 @@ import './styles/index.scss'
 import Vue from 'vue';
 import axios from "axios";
 
-axios.defaults.baseURL = "https://test.msn.nofetel.com/";
+// axios.defaults.baseURL = "https://test.msn.nofetel.com/";
+axios.defaults.baseURL = "https://test.nofetel.com/";
 
 import ComponentTemps from './components/compomemts.js';
 import Util from "./util/util";

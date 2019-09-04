@@ -1,5 +1,6 @@
 <template>
-    <div id="allmap"></div>    
+    <div id="allmap"></div>        
+
 </template>
 
 <script>
@@ -14,7 +15,8 @@
             return {
                point:{},
                map: null,
-               markers: []
+               markers: [],
+               city: ""
             }
         },
         methods: {
@@ -80,6 +82,8 @@
                 marker.addEventListener("click", function (e) {
                     marker.openInfoWindow(infoWindow, point); //开启信息窗口
                     _this.map.centerAndZoom(point, 18);
+                    // console.log(point)
+                    // location.href="http://api.map.baidu.com/direction?origin="+_this.point.lat+","+_this.point.lng+"&destination="+point.lat+","+point.lng+"&mode=driving&region="+_this.city+"&output=html";
                 });
                 marker.setAnimation(BMAP_ANIMATION_BOUNCE);
                 this.map.addOverlay(marker); 
@@ -94,7 +98,9 @@
             var _this = this;
             var geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function(r){
-                 _this.point = r.point;
+                
+                _this.point = r.point;
+                _this.city = r.address.city.split("省")[0];
                 _this.getLngList(_this.point.lng, _this.point.lat);
             });
 

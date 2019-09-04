@@ -71,7 +71,7 @@ module.exports = () => {
             // inline: false,
             proxy: {
                 '/api': {
-                    target: 'https://test.msn.nofetel.com/', //需要跨域的域名
+                    target: 'https://test.nofetel.com/', //需要跨域的域名
                     pathRewrite: { '^/api': '' }
                 }
             }
